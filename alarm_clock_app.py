@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib
 import importlib.util
+import os
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -59,12 +60,12 @@ class AlarmClockApp:
         self.status_value = tk.StringVar(value="Set a time, choose a tone, then start the alarm.")
         self.target_value = tk.StringVar(value="⏱ No alarm scheduled")
         
-        # Default alarm sounds mapping
+        # Default alarm sounds mapping (bundled with project)
         self.default_alarms = {
-            "🔔 Classic Clock": r"c:\Users\HP\Downloads\freesound_community-alarm-clock-90867.mp3",
-            "⏰ Short Alert": r"c:\Users\HP\Downloads\freesound_community-alarm-clock-short-6402.mp3",
-            "🎺 Electronic Chime": r"c:\Users\HP\Downloads\microsammy-clock-alarm-8761.mp3",
-            "🛏️ Bedside Bell": r"c:\Users\HP\Downloads\freesound_community-bedside-clock-alarm-95792.mp3",
+            "🔔 Classic Clock": os.path.join(os.path.dirname(__file__), 'sounds', 'alarm-clock.mp3'),
+            "⏰ Short Alert": os.path.join(os.path.dirname(__file__), 'sounds', 'alarm-short.mp3'),
+            "🎺 Electronic Chime": os.path.join(os.path.dirname(__file__), 'sounds', 'electronic-chime.mp3'),
+            "🛏️ Bedside Bell": os.path.join(os.path.dirname(__file__), 'sounds', 'bedside-bell.mp3'),
         }
 
         self._build_ui()
